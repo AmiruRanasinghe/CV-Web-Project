@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Form</title>
+  <link rel="stylesheet" href="Queryform.css">
+</head>
+<body>
+
+  <!--Creating Navigation Bar-->
+    <section class="banner">
+        <nav class="nav">
+          <img src="logo.jpg" class="lg" alt="Logo Photo">
+          <ul>
+            <li><a href="Main.html">Main</a></li>
+            <li><a href="CV.html">CV</a></li>
+            <li><a href="IdealJob.html">Ideal Job</a></li>
+            <li><a href="QueryForm.html" class="active">Query Form</a></li>
+            <li><a href="Sitemap.html">Sitemap</a></li>    
+          </ul>
+        </nav>
+    </section>
+   <br><br><br><br><br><br>
+  <div class="heading">
+    <h1 id="formhead">QUERY FORM</h1>
+  </div>
+
+  
+  <!--Creating Query Form-->
+  <form id="queryForm">
+    <div class="form_texts">  
+
+                  <label for="name">Full Name: </label>
+                  <input type="text" id="name" name="name" placeholder="John S." required>
+                  <br><br>
+                  <label for="email">Email Address:</label>
+                  <input type="email" id="email" name="email" placeholder="john@gmail.com" required>
+                  <br><br><br>
+                  
+                  <img class="query_photo" src="query.jpg" alt="Query Photo" >
+
+                  <p>Query Subject:</p>
+                  <br>
+                      
+                      <input type="radio" id="programming" name="subject" value="Programming Experience" required>
+                      <label for="programming">Programming Experience</label>
+                      <br><br>
+                      <input type="radio" id="other" name="subject" value="Other Experience" required>
+                      <label for="other">Other Experience</label>
+                      <br><br>
+                      <input type="radio" id="skills" name="subject" value="Transferable Skills" required>
+                      <label for="skills">Transferable Skills</label>
+                      <br><br><br>
+                      <p>Query Details: </p>
+                      <br>
+                      <textarea id="details" name="details" required></textarea>
+                      <br><br>
+                      
+                      <!--Create View Query Button-->
+                      <button type="button" class="view_button" onclick="viewQuery()">View Query</button>   
+                      <br>                  
+    </div> 
+  </form>
+
+    <!--Edit and Send Button create-->
+    <div id="querySummary" class="summary_container" style="display: none;">
+      <div id="summaryContent" class="cont"></div>
+        <div class="button_container">
+          <button type="button" class="query_button" onclick="editQuery()">Edit</button>
+          <button type="button" class="query_button" onclick="sendQuery()">Send</button>
+        </div>  
+    </div>
+  
+  <!--Create Script-->
+  <script>
+  function viewQuery() {
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var subject = document.querySelector('input[name="subject"]:checked');
+    var details = document.getElementById('details').value;
+
+    if(!name || !email || !subject || !details) {
+        alert('Please fill  all the required fields.');
+        return;
+    }
+    subject = subject ? subject.value : "";
+
+    document.getElementById('queryForm').style.display = 'none';
+    document.getElementById('formhead').textContent = 'QUERY SUMMARY';
+    document.getElementById('summaryContent').innerHTML = `
+      <p>Name: ${name}</p>
+      <p>Email: ${email}</p>
+      <p>Subject: ${subject}</p>
+      <p>Details: ${details}</p>
+      <img class='mail_photo' src="mail.png" alt="Mail Photo">
+    `;
+    document.getElementById('querySummary').style.display = 'block';
+  }
+    function editQuery() {
+      document.getElementById('querySummary').style.display = 'none';
+      document.getElementById('queryForm').style.display = 'block';
+    }
+
+    function sendQuery() {
+      alert('Query sent Successfully!');
+      document.getElementById('querySummary').style.display = 'none';
+      document.getElementById('queryForm').reset();
+      document.getElementById('queryForm').style.display = 'block';
+    }    
+  </script>
+  <br><br><br><br>
+  
+  <!--Create Footer-->
+  <footer>
+    <p class="foot-t">Contact me </p>
+    <a href="mailto:amiruranasinghe@gmail.com">amiruranasinghe@gmail.com</a>
+  </footer>
+
+  </body>
+</html>
